@@ -67,12 +67,10 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     public class AudioViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image;
         TextView name;
         TextView duration;
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.audioImage);
             name = itemView.findViewById(R.id.audioname);
             duration = itemView.findViewById(R.id.audioDuration);
         }
