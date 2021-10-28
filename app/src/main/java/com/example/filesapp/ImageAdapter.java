@@ -1,6 +1,7 @@
 package com.example.filesapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,17 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .centerCrop()
                 .into(holder.image);
 //        holder.itemView.setIma
+
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ImageFullActivity.class);
+                intent.putExtra("path", currentImage.imagePath);
+                intent.putExtra("name", currentImage.imageName);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

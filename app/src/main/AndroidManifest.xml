@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilesApp">
         <activity
+            android:name=".ImageFullActivity"
+            android:exported="false" />
+        <activity
             android:name=".VideoGallary"
             android:exported="false" />
         <activity

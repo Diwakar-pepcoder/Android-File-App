@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void fetchImageVideoCount(View view){
-//        parseAllImages();
-//        parseAllVideos();
-    }
-
     public void imageGallary(View view){
         Intent intent = new Intent(this, ImageGallary.class);
         startActivity(intent);
