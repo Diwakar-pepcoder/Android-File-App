@@ -1,4 +1,4 @@
-package com.example.filesapp;
+package videohandle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -11,12 +11,13 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.filesapp.R;
 
 import java.util.ArrayList;
 
@@ -76,13 +77,15 @@ public class VideoGallary extends AppCompatActivity {
 
         int column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         int thumb = cursor.getColumnIndexOrThrow(MediaStore.Video.Thumbnails.DATA);
+        int nameIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.BUCKET_DISPLAY_NAME);
 //        column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         int size = cursor.getCount();
         while (cursor.moveToNext()) {
             String path = cursor.getString(column_index_data);
             String thumbnail = cursor.getString(thumb);
+            String name = cursor.getString(nameIndex);
 
-            Video video = new Video(path, thumbnail);
+            Video video = new Video(path, thumbnail, name);
 
             listOfAllVideos.add(video);
         }

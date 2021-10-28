@@ -1,4 +1,4 @@
-package com.example.filesapp;
+package imagehandler;
 
 public class Image {
     String imagePath;

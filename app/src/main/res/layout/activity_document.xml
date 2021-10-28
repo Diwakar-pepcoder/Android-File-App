@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="imagehandler.ImageFullActivity">
+    tools:context="documenthandler.DocumentActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="3dp"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="351dp"
-        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

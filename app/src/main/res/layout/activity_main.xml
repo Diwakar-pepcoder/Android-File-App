@@ -24,10 +24,34 @@
         android:layout_height="56dp"
         android:onClick="videoGallary"
         android:text="Video"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagecount" />
+
+    <Button
+        android:id="@+id/download"
+        android:layout_width="153dp"
+        android:layout_height="61dp"
+        android:onClick="downloadGallary"
+        android:text="Download"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videocount" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="137dp"
+        android:layout_height="58dp"
+        android:onClick="audioGallary"
+        android:text="Audio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/download" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.filesapp;
+package imagehandler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.filesapp.R;
 
 public class ImageFullActivity extends AppCompatActivity {
 

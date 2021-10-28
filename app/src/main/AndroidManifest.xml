@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +15,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FilesApp">
         <activity
-            android:name=".ImageFullActivity"
+            android:name="audiohandler.AudioActivity"
             android:exported="false" />
         <activity
-            android:name=".VideoGallary"
-            android:exported="false" />
+            android:name="downloadhandler.DownloadActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
-            android:name=".ImageGallary"
-            android:exported="false" />
+            android:name="documenthandler.DocumentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name="videohandle.VideoFullActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="videohandle.VideoGallary" />
+        </activity>
+        <activity
+            android:name="videohandle.VideoGallary"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+            y"/>
+        </activity>
+        <activity
+            android:name="imagehandler.ImageFullActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="imagehandler.ImageGallary" />
+        </activity>
+        <activity
+            android:name="imagehandler.ImageGallary"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

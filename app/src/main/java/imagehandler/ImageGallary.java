@@ -1,4 +1,4 @@
-package com.example.filesapp;
+package imagehandler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -11,12 +11,13 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+
+import com.example.filesapp.R;
 
 import java.util.ArrayList;
 
@@ -52,11 +53,7 @@ public class ImageGallary extends AppCompatActivity {
 
     }
 
-
-
     private ArrayList<Image> getAllImages() {
-        StringBuilder sb = new StringBuilder();
-        Button out = (Button)findViewById(R.id.imagecount);
         Context context = this;
 
         ArrayList<Image> listOfAllImages = new ArrayList<>();
@@ -64,7 +61,6 @@ public class ImageGallary extends AppCompatActivity {
         String[] projection = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.DISPLAY_NAME };// ,MediaStore.Images.Media.BUCKET_DISPLAY_NAME
 
 //        cursor = this.getCo
-
         MergeCursor cursor = new MergeCursor(new Cursor[]{
                 context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null, null, null),
                 //context.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, projection, null, null, null),
