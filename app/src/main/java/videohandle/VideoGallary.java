@@ -52,21 +52,13 @@ public class VideoGallary extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    private ArrayList<Video> getAllVideos() {
-        StringBuilder sb = new StringBuilder();
-        TextView out = (TextView)findViewById(R.id.videocount);
-        Context context = this;
-
-        ArrayList<Video> listOfAllVideos = new ArrayList<>();
-//        out.setText(uri.getPath());
+    private static MergeCursor getCursor(Context context){
         String[] projection = {
                 MediaStore.MediaColumns.DATA,
                 MediaStore.Video.Media.BUCKET_DISPLAY_NAME,
                 MediaStore.Video.Media._ID,
                 MediaStore.Video.Thumbnails.DATA
-            };// ,MediaStore.Images.Media.BUCKET_DISPLAY_NAME
-
-//        cursor = this.getCo
+        };// ,MediaStore.Images.Media.BUCKET_DISPLAY_NAME
 
         MergeCursor cursor = new MergeCursor(new Cursor[]{
 //                context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null, null, null),
@@ -74,12 +66,24 @@ public class VideoGallary extends AppCompatActivity {
 //                context.getContentResolver().query(MediaStore.Images.Media.INTERNAL_CONTENT_URI, projection, null, null, null),
                 context.getContentResolver().query(MediaStore.Video.Media.INTERNAL_CONTENT_URI, projection, null, null, null)
         });
+        return cursor;
+    }
+
+    public static int getCount(Context context){
+        return getCursor(context).getCount();
+    }
+
+    private ArrayList<Video> getAllVideos() {
+
+        ArrayList<Video> listOfAllVideos = new ArrayList<>();
+//        out.setText(uri.getPath());
+
+        MergeCursor cursor = getCursor(this);
 
         int column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         int thumb = cursor.getColumnIndexOrThrow(MediaStore.Video.Thumbnails.DATA);
         int nameIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.BUCKET_DISPLAY_NAME);
-//        column_index_folder_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-        int size = cursor.getCount();
+
         while (cursor.moveToNext()) {
             String path = cursor.getString(column_index_data);
             String thumbnail = cursor.getString(thumb);
@@ -90,7 +94,6 @@ public class VideoGallary extends AppCompatActivity {
             listOfAllVideos.add(video);
         }
 
-//        out.setText("There are "+size+" videos");
         return listOfAllVideos;
     }
 }

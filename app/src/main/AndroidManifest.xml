@@ -16,7 +16,11 @@
         android:theme="@style/Theme.FilesApp">
         <activity
             android:name="audiohandler.AudioActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="imagehandler.ImageGallary" />
+        </activity>
         <activity
             android:name="downloadhandler.DownloadActivity"
             android:exported="false">

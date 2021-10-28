@@ -34,8 +34,5 @@ public class VideoFullActivity extends AppCompatActivity {
         videoView.setVideoURI(uri);
         videoView.requestFocus();
         videoView.start();
-
-
-
     }
 }

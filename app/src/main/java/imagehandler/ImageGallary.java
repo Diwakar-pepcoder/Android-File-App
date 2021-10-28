@@ -38,6 +38,8 @@ public class ImageGallary extends AppCompatActivity {
         imageRecycler.setLayoutManager(new GridLayoutManager(this, 3));
         imageRecycler.setHasFixedSize(true);
 
+        getSupportActionBar().setTitle("images");
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
             PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{
@@ -51,13 +53,10 @@ public class ImageGallary extends AppCompatActivity {
         imageRecycler.setAdapter(new ImageAdapter(this, allPictures));
         progressBar.setVisibility(View.GONE);
 
+
     }
 
-    private ArrayList<Image> getAllImages() {
-        Context context = this;
-
-        ArrayList<Image> listOfAllImages = new ArrayList<>();
-//        out.setText(uri.getPath());
+    private static MergeCursor getCursor(Context context){
         String[] projection = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.DISPLAY_NAME };// ,MediaStore.Images.Media.BUCKET_DISPLAY_NAME
 
 //        cursor = this.getCo
@@ -67,6 +66,17 @@ public class ImageGallary extends AppCompatActivity {
                 context.getContentResolver().query(MediaStore.Images.Media.INTERNAL_CONTENT_URI, projection, null, null, null),
                 //context.getContentResolver().query(MediaStore.Video.Media.INTERNAL_CONTENT_URI, projection, null, null, null)
         });
+        return cursor;
+    }
+
+    public static int getCount(Context context){
+        return getCursor(context).getCount();
+    }
+
+    private ArrayList<Image> getAllImages() {
+        ArrayList<Image> listOfAllImages = new ArrayList<>();
+
+        MergeCursor cursor = getCursor(this);
 
         while (cursor.moveToNext()) {
             String absolutePathOfImage = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
@@ -75,7 +85,6 @@ public class ImageGallary extends AppCompatActivity {
             listOfAllImages.add(new Image(absolutePathOfImage, displayName));
         }
 
-//        out.setText("There are "+size+" images");
         return listOfAllImages;
     }
 

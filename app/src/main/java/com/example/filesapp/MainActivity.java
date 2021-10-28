@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import audiohandler.AudioActivity;
 import downloadhandler.DownloadActivity;
@@ -18,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView music = findViewById(R.id.musiccount);
+        music.setText(String.valueOf(AudioActivity.getCount(this)));
+
+        TextView image = findViewById(R.id.imagecount);
+        image.setText(String.valueOf(ImageGallary.getCount(this)));
+
+        TextView video = findViewById(R.id.videocount);
+        video.setText(String.valueOf(VideoGallary.getCount(this)));
     }
 
     public void imageGallary(View view){

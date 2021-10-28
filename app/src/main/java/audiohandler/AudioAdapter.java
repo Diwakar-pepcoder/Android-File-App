@@ -2,6 +2,7 @@ package audiohandler;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,19 +40,21 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder holder, int position) {
-        Audio audio = allAudio.get(position);
+        final Audio audio = allAudio.get(position);
 
         holder.duration.setText(String.valueOf(audio.duration));
         holder.name.setText(audio.name);
 
-
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VideoFullActivity.class);
-                intent.putExtra("path", audio.path);
-                intent.putExtra("name", audio.name);
+//                Intent intent = new Intent(context, VideoFullActivity.class);
+//                intent.putExtra("path", audio.path);
+//                intent.putExtra("name", audio.name);
+//                context.startActivity(intent);
+                Uri uri = Uri.parse(audio.path);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.setDataAndType(uri, "audio/*");
                 context.startActivity(intent);
             }
         });

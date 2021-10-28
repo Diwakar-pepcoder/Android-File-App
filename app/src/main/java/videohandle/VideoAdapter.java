@@ -2,6 +2,7 @@ package videohandle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-        Video video = allVideos.get(position);
+        final Video video = allVideos.get(position);
         Glide.with(context)
                 .load(video.thumbnail)
                 .centerCrop()
@@ -47,9 +48,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         holder.thubmnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VideoFullActivity.class);
-                intent.putExtra("path", video.path);
-                intent.putExtra("name", video.name);
+//                Intent intent = new Intent(context, VideoFullActivity.class);
+//                intent.putExtra("path", video.path);
+//                intent.putExtra("name", video.name);
+//                context.startActivity(intent);
+                Uri uri = Uri.parse(video.path);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                intent.setDataAndType(uri, "video/*");
                 context.startActivity(intent);
             }
         });
